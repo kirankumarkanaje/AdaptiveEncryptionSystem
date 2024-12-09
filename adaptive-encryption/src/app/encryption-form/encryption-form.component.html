@@ -1,0 +1,71 @@
+<div class="form-container">
+  <h2>Encryption Form</h2>
+  <form #encryptionForm="ngForm" (ngSubmit)="encryptData()" novalidate>
+    <!-- Data to Encrypt -->
+    <label for="data">Data to Encrypt:</label>
+    <input
+      type="text"
+      id="data"
+      [(ngModel)]="data"
+      name="data"
+      required
+      minlength="5"
+      maxlength="200"
+      #dataInput="ngModel"
+    />
+    <div *ngIf="dataInput.invalid && (dataInput.dirty || dataInput.touched)" class="error">
+      <small *ngIf="dataInput.errors?.['required']">Data is required.</small>
+      <small *ngIf="dataInput.errors?.['minlength']">Data must be at least 5 characters long.</small>
+      <small *ngIf="dataInput.errors?.['maxlength']">Data must be no more than 200 characters.</small>
+    </div>
+
+    <!-- Sensitivity Level -->
+    <label for="sensitivity">Sensitivity (1-10):</label>
+    <input
+      type="number"
+      id="sensitivity"
+      [(ngModel)]="sensitivity"
+      name="sensitivity"
+      required
+      min="1"
+      max="10"
+      #sensitivityInput="ngModel"
+    />
+    <div *ngIf="sensitivityInput.invalid && (sensitivityInput.dirty || sensitivityInput.touched)" class="error">
+      <small *ngIf="sensitivityInput.errors?.['required']">Sensitivity is required.</small>
+      <small *ngIf="sensitivityInput.errors?.['min']">Sensitivity must be at least 1.</small>
+      <small *ngIf="sensitivityInput.errors?.['max']">Sensitivity must be at most 10.</small>
+    </div>
+
+    <!-- Battery Level -->
+    <label for="battery">Battery Level (%):</label>
+    <input
+      type="number"
+      id="battery"
+      [(ngModel)]="batteryLevel"
+      name="batteryLevel"
+      required
+      min="0"
+      max="100"
+      #batteryInput="ngModel"
+    />
+    <div *ngIf="batteryInput.invalid && (batteryInput.dirty || batteryInput.touched)" class="error">
+      <small *ngIf="batteryInput.errors?.['required']">Battery level is required.</small>
+      <small *ngIf="batteryInput.errors?.['min']">Battery level cannot be less than 0%.</small>
+      <small *ngIf="batteryInput.errors?.['max']">Battery level cannot exceed 100%.</small>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="encryptionForm.invalid">Encrypt</button>
+  </form>
+
+  <!-- Result Section -->
+  <div *ngIf="result" class="result">
+    <h3>Encryption Results:</h3>
+    <p><strong>Method Used:</strong> {{ result.method }}</p>
+    <p><strong>Encrypted Data:</strong></p>
+    <ul>
+      <li *ngFor="let block of result.encrypted_blocks">{{ block }}</li>
+    </ul>
+  </div>
+</div>
