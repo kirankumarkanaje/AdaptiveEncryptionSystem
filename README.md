@@ -34,7 +34,7 @@ LEA (128-bit block cipher)
 PRESENT (64-bit block cipher)
 Speck (low-power encryption)
 
-#How to Execute the Code
+# How to Execute the Code
 
 Open the Angular application in your browser at http://localhost:4200.
 Fill out the form with the following inputs:
