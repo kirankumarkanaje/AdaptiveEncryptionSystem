@@ -34,6 +34,15 @@ LEA (128-bit block cipher)
 PRESENT (64-bit block cipher)
 Speck (low-power encryption)
 
+#How to Execute the Code
+
+Open the Angular application in your browser at http://localhost:4200.
+Fill out the form with the following inputs:
+Data to Encrypt: The text string to be encrypted (minimum 5 characters, maximum 200 characters).
+Sensitivity: A value between 1 and 10 that determines the importance of the data (higher values select more robust algorithms).
+Battery Level: A value between 0% and 100% that simulates the device's battery state (lower values prioritize energy-efficient algorithms).
+Click the "Encrypt" button to submit the form.
+
 # Running Code
 
 Backend - python app.py
@@ -43,6 +52,8 @@ Frontend - ng serve
 
 POST /encrypt
 
+# Example Input
+
 Request:
 {
   "data": "Hello World",
@@ -50,6 +61,7 @@ Request:
   "battery_level": 30
 }
 
+# Example Output
 
 Response:
 {
@@ -58,6 +70,7 @@ Response:
     [345678345, 893489234, 23452345, 623456234]
   ]
 }
+
 
 # Validation Rules
 
